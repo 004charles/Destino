@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de URLs com Copiar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .url-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .url-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .url-item span {
+            margin-right: 10px;
+        }
+        .copy-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de URLs</h1>
+
+    <ul class="url-list">
+        {% for ap in api %}
+        <li class="url-item">
+            <span>{{ap.nome}} : </span>
+            <a href="" id="url1"> {{ap.url}} </a>
+            <button class="copy-btn" onclick="copyToClipboard('url1')">Copiar</button>
+        </li>
+       {% endfor %}
+        <!-- Adicione mais itens de URL conforme necessário -->
+    </ul>
+
+    <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id).href;
+            var tempInput = document.createElement("input");
+            tempInput.value = copyText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("URL copiada: " + copyText);
+        }
+    </script>
+
+</body>
+</html>
