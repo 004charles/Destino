@@ -47,7 +47,7 @@ ROOT_URLCONF = 'Destinos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +128,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+# Permitir todos os domínios
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Ou, se você preferir permitir apenas domínios específicos:
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+]
+
+# Para aceitar requisições de qualquer origem, sem restrição de método
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Permitir cabeçalhos personalizados
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrftoken',
+]
+
+# Se você precisar permitir credenciais (cookies, autenticação)
+CORS_ALLOW_CREDENTIALS = True
+
